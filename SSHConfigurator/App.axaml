@@ -1,0 +1,120 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="SSHConfigurator.App"
+             Name="SSH Configurator"
+             RequestedThemeVariant="Dark">
+    <Application.Resources>
+        <SolidColorBrush x:Key="CanvasBrush" Color="#0B0D12" />
+        <SolidColorBrush x:Key="PanelBrush" Color="#12151E" />
+        <SolidColorBrush x:Key="DividerBrush" Color="#33394B" />
+        <SolidColorBrush x:Key="AccentBrush" Color="#5DFFE1" />
+        <SolidColorBrush x:Key="SignalBrush" Color="#FF459B" />
+        <SolidColorBrush x:Key="MutedTextBrush" Color="#A9B3C8" />
+        <SolidColorBrush x:Key="SelectionBrush" Color="#123C3A" />
+        <FontFamily x:Key="TerminalFont">Menlo, Consolas, DejaVu Sans Mono, monospace</FontFamily>
+        <StaticResource x:Key="AccentButtonForeground" ResourceKey="CanvasBrush" />
+        <StaticResource x:Key="AccentButtonForegroundPointerOver" ResourceKey="CanvasBrush" />
+        <StaticResource x:Key="AccentButtonForegroundPressed" ResourceKey="CanvasBrush" />
+        <StaticResource x:Key="CheckBoxCheckGlyphForegroundChecked" ResourceKey="CanvasBrush" />
+        <StaticResource x:Key="CheckBoxCheckGlyphForegroundCheckedPointerOver" ResourceKey="CanvasBrush" />
+        <StaticResource x:Key="CheckBoxCheckGlyphForegroundCheckedPressed" ResourceKey="CanvasBrush" />
+        <StaticResource x:Key="ExpanderContentBackground" ResourceKey="PanelBrush" />
+    </Application.Resources>
+
+    <Application.Styles>
+        <FluentTheme>
+            <FluentTheme.Palettes>
+                <ColorPaletteResources x:Key="Dark" Accent="#5DFFE1"
+                                       BaseHigh="#F3F6FF" BaseMedium="#A9B3C8"
+                                       AltHigh="#0B0D12" AltMediumHigh="#12151E"
+                                       ChromeMedium="#252A38" ChromeLow="#191D28" />
+            </FluentTheme.Palettes>
+        </FluentTheme>
+
+        <Style Selector="Window">
+            <Setter Property="Background" Value="{StaticResource CanvasBrush}" />
+            <Setter Property="Icon" Value="avares://SSHConfigurator/Assets/AppIcon.png" />
+        </Style>
+        <Style Selector="Button">
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="Padding" Value="14,8" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+        </Style>
+        <Style Selector="TextBlock.setting-error">
+            <Setter Property="Foreground" Value="#FF8397" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style Selector="TextBlock.setting-warning">
+            <Setter Property="Foreground" Value="#FFD479" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style Selector="Button.setting-help">
+            <Setter Property="Foreground" Value="{StaticResource AccentBrush}" />
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="Button.setting-remove">
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="MinWidth" Value="0" />
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Background" Value="#9D263C" />
+        </Style>
+        <Style Selector="Button.setting-remove.undo">
+            <Setter Property="Background" Value="#414651" />
+        </Style>
+        <Style Selector="Button.setting-remove:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#B8344E" />
+        </Style>
+        <Style Selector="Button.setting-remove.undo:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="#535A68" />
+        </Style>
+        <Style Selector="TextBox">
+            <Setter Property="CornerRadius" Value="0" />
+        </Style>
+        <Style Selector="TextBox.search-field">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="9,4" />
+        </Style>
+        <Style Selector="ComboBox">
+            <Setter Property="CornerRadius" Value="0" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="12,6,0,6" />
+        </Style>
+        <Style Selector="AutoCompleteBox">
+            <Setter Property="Padding" Value="9,4" />
+        </Style>
+        <Style Selector="AutoCompleteBox /template/ TextBox#PART_TextBox">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style Selector="Expander">
+            <Setter Property="CornerRadius" Value="0" />
+        </Style>
+        <Style Selector="ListBox.hosts ListBoxItem">
+            <Setter Property="FontFamily" Value="{StaticResource TerminalFont}" />
+            <Setter Property="Padding" Value="10,9" />
+            <Setter Property="CornerRadius" Value="0" />
+        </Style>
+        <Style Selector="ListBox.setting-picker">
+            <Setter Property="Background" Value="{StaticResource PanelBrush}" />
+        </Style>
+        <Style Selector="ListBox.config-list ListBoxItem:selected">
+            <Setter Property="Foreground" Value="{StaticResource AccentBrush}" />
+        </Style>
+        <Style Selector="ListBox.config-list ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+            <Setter Property="Background" Value="{StaticResource SelectionBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource AccentBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}" />
+            <Setter Property="BorderThickness" Value="3,0,0,0" />
+        </Style>
+        <Style Selector="TextBox.raw-config">
+            <Setter Property="Background" Value="{StaticResource CanvasBrush}" />
+            <Setter Property="Foreground" Value="{StaticResource AccentBrush}" />
+            <Setter Property="Padding" Value="12" />
+        </Style>
+        <Style Selector="TextBox.config-value">
+            <Setter Property="FontFamily" Value="{StaticResource TerminalFont}" />
+        </Style>
+    </Application.Styles>
+</Application>
