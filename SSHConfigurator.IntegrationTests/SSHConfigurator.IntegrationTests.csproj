@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>false</IsPackable>
+        <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia.Headless.XUnit" Version="12.1.6" />
+        <!-- Avalonia's headless adapter uses the xUnit 3.2.2 discovery API. -->
+        <PackageReference Include="xunit.v3.mtp-v2" Version="3.2.2" />
+        <ProjectReference Include="../SSHConfigurator/SSHConfigurator.csproj" />
+        <Using Include="Xunit" />
+    </ItemGroup>
+</Project>

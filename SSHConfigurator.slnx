@@ -1,6 +1,12 @@
 <Solution>
     <Folder Name="/_Solution Items/">
+        <File Path="global.json" />
         <File Path="README.md" />
     </Folder>
+    <Folder Name="/_Solution Items/Pipelines/">
+        <File Path=".github/workflows/ci.yml" />
+        <File Path=".github/workflows/release.yml" />
+    </Folder>
     <Project Path="SSHConfigurator/SSHConfigurator.csproj" />
+    <Project Path="SSHConfigurator.IntegrationTests/SSHConfigurator.IntegrationTests.csproj" />
 </Solution>

@@ -7,6 +7,12 @@ SSH Configurator is an Avalonia desktop app for editing your OpenSSH client conf
 - Browse your private keys, copy their paths, and create Ed25519, RSA, or ECDSA key pairs with `ssh-keygen`.
 - Open a saved host alias in Terminal on macOS or Windows Terminal on Windows.
 
+## Download
+
+Download the ZIP for your operating system and processor from [GitHub Releases](https://github.com/RoyalScribblz/SSHConfigurator/releases). Extract it and open the app. The archives include the .NET runtime.
+
+The macOS bundles are unsigned and unnotarized, so Gatekeeper may block them on first launch.
+
 ## Run from source
 
 Install the .NET 10 SDK. Key generation also requires the OpenSSH client with `ssh-keygen` on your PATH.
@@ -34,3 +40,17 @@ dotnet publish SSHConfigurator -c Release -r win-x64 --self-contained true
 ```
 
 Run `SSHConfigurator.exe` from the publish folder. Keep its companion files alongside it.
+
+## Run integration tests
+
+With the .NET 10 SDK and `ssh-keygen` available, run the xUnit v3 suite through Microsoft.Testing.Platform.
+
+```sh
+dotnet test --solution SSHConfigurator.slnx --configuration Release
+```
+
+GitHub Actions runs the suite on macOS and Windows for pull requests into `main`.
+
+## Create a release
+
+In GitHub, open **Actions → Release desktop app → Run workflow**. Select the branch to publish and enter a new version such as `0.1.1`. After all four desktop archives build, the workflow tags the selected commit and publishes a GitHub Release with the archives attached.
