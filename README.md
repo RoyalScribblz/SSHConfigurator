@@ -1,56 +1,32 @@
 # SSH Configurator
 
-SSH Configurator is an Avalonia desktop app for editing your OpenSSH client configuration on macOS and Windows. It works with the config OpenSSH already uses, including `~/.ssh/config` on macOS and `%USERPROFILE%\.ssh\config` on Windows.
+Manage your SSH hosts and keys from a desktop app for macOS and Windows. SSH Configurator edits the same per-user config file that OpenSSH reads, so changes you save here also work when you run `ssh` yourself.
 
-- Search host aliases, add hosts, and edit settings with inline help and validation.
-- Preview the selected host's config block before saving. Setting removals can be undone before you save.
-- Browse your private keys, copy their paths, and create Ed25519, RSA, or ECDSA key pairs with `ssh-keygen`.
-- Open a saved host alias in Terminal on macOS or Windows Terminal on Windows.
+## Download and open
 
-## Download
+Get the ZIP for your machine from [GitHub Releases](https://github.com/RoyalScribblz/SSHConfigurator/releases/latest). The download includes the .NET runtime.
 
-Download the ZIP for your operating system and processor from [GitHub Releases](https://github.com/RoyalScribblz/SSHConfigurator/releases). Extract it and open the app. The archives include the .NET runtime.
+| Your machine | ZIP name ends with | After extracting |
+| --- | --- | --- |
+| Mac with Apple silicon | `osx-arm64.zip` | Open **SSH Configurator.app** |
+| Intel Mac | `osx-x64.zip` | Open **SSH Configurator.app** |
+| Windows PC with Intel or AMD | `win-x64.zip` | Run **SSHConfigurator.exe** |
+| Windows PC with ARM | `win-arm64.zip` | Run **SSHConfigurator.exe** |
 
-The macOS bundles are unsigned and unnotarized, so Gatekeeper may block them on first launch.
+On Windows, keep the extracted files together. The macOS app is ad hoc signed and unnotarized. If macOS blocks the first launch and you trust the download, open **System Settings → Privacy & Security** and choose **Open Anyway**. [Apple’s macOS guide](https://support.apple.com/en-gb/guide/mac-help/mh40617/mac)
+
+## Use the app
+
+1. Select an existing host or click **Add Host** to give a new connection a memorable SSH alias.
+2. Edit its settings or use **Add Setting** to search the available OpenSSH options. Expand **View config block** to see the exact changes before saving.
+3. Click **Save Changes** to write your config, then **Open in Terminal** to connect using the saved alias.
+
+Use **Manage SSH Keys** to copy a private key’s path for an `IdentityFile` setting or generate a new Ed25519, RSA, or ECDSA key pair. Key generation uses the `ssh-keygen` command from your local OpenSSH installation.
 
 ## Run from source
 
-Install the .NET 10 SDK. Key generation also requires the OpenSSH client with `ssh-keygen` on your PATH.
+With the .NET 10 SDK installed, run `dotnet run --project SSHConfigurator` from the repository root.
 
-```sh
-dotnet run --project SSHConfigurator
-```
+## License
 
-You can also open `SSHConfigurator.slnx` in Rider and run the `SSHConfigurator` project.
-
-## Publish a desktop build
-
-For Apple silicon Macs, run the following command. Use `osx-x64` for Intel Macs.
-
-```sh
-dotnet publish SSHConfigurator -c Release -r osx-arm64 --self-contained true
-```
-
-Open `SSH Configurator.app` in the publish folder printed by the command.
-
-For x64 Windows, run the following command. Use `win-arm64` for ARM64 Windows.
-
-```sh
-dotnet publish SSHConfigurator -c Release -r win-x64 --self-contained true
-```
-
-Run `SSHConfigurator.exe` from the publish folder. Keep its companion files alongside it.
-
-## Run integration tests
-
-With the .NET 10 SDK and `ssh-keygen` available, run the xUnit v3 suite through Microsoft.Testing.Platform.
-
-```sh
-dotnet test --solution SSHConfigurator.slnx --configuration Release
-```
-
-GitHub Actions runs the suite on macOS and Windows for pull requests into `main`.
-
-## Create a release
-
-In GitHub, open **Actions → Release desktop app → Run workflow**. Select the branch to publish and enter a new version such as `0.1.1`. After all four desktop archives build, the workflow tags the selected commit and publishes a GitHub Release with the archives attached.
+SSH Configurator is licensed under the [MIT License](LICENSE). You can use, modify, and redistribute it, including commercially, as long as you retain the copyright and license notices. The software comes as is, without warranty.

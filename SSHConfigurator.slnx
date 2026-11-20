@@ -1,6 +1,7 @@
 <Solution>
     <Folder Name="/_Solution Items/">
         <File Path="global.json" />
+        <File Path="LICENSE" />
         <File Path="README.md" />
     </Folder>
     <Folder Name="/_Solution Items/Pipelines/">

@@ -84,6 +84,8 @@ jobs:
           /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $version" "$bundle/Contents/Info.plist"
           /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $version" "$bundle/Contents/Info.plist"
           test -x "$bundle/Contents/MacOS/SSHConfigurator"
+          codesign --force --deep --sign - "$bundle"
+          codesign --verify --deep --strict "$bundle"
           ditto -c -k --keepParent "$bundle" "SSHConfigurator-$RELEASE_TAG-$APP_RID.zip"
       - name: Archive Windows app
         if: runner.os == 'Windows'
